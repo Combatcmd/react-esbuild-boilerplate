@@ -5,9 +5,15 @@ build({
   entry: 'src/index.jsx',
   outfile: 'public/app.js',
   bundle: true,
+  minify: true,
   sourcemap: true,
-  format: 'cjs',
-  define: { 'process.env.NODE_ENV': 'development' },
+  format: 'esm',
+  define: {
+    'process.env.NODE_ENV': cliopts.watch ? 'development' : 'production',
+  },
+  loader: {
+    '.js': 'jsx',
+  },
 });
 
 cliopts.watch &&
